@@ -2,8 +2,8 @@
 //  CONFIGURAÇÕES DO ZUB
 // ─────────────────────────────────────────
 
-const SUPABASE_URL = 'COLE_AQUI_SUA_SUPABASE_URL';
-const SUPABASE_KEY = 'COLE_AQUI_SUA_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://olqeqktgmkpaxikbjwqz.supabase.co/rest/v1/';
+const SUPABASE_KEY = 'sb_publishable_NK-vfdC0l6n6owHANsD00A_M-n-cOdH';
 
 // Metals-API (opcional — deixe vazio para modo demonstração)
 const METALS_API_KEY = '';
