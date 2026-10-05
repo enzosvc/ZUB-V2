@@ -11,7 +11,7 @@ _Última atualização: 2026-10-05_
 
 ## Próximos passos
 
-- Preencher `BRAPI_TOKEN` em `config.js` (token gratuito de brapi.dev) para o card do Ibovespa.
+- Conferir em produção se dólar, euro e Ibovespa batem com o mercado (só testados com dados simulados).
 - Conferir no painel do Supabase as políticas RLS das tabelas abaixo e registrar o SQL
   real na seção "Esquema do banco" (hoje o esquema foi deduzido do `app.js`).
 
