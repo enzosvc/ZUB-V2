@@ -1,0 +1,38 @@
+# ZUB — progresso do desenvolvimento
+
+Arquivo de continuidade entre sessões. Ler no início de cada sessão; atualizar no fim
+de cada sessão (ou antes de uma pausa), no mesmo commit do trabalho.
+
+_Última atualização: 2026-10-05_
+
+## Em andamento
+
+- Nada em andamento.
+
+## Próximos passos
+
+- Conferir no painel do Supabase as políticas RLS das tabelas abaixo e registrar o SQL
+  real na seção "Esquema do banco" (hoje o esquema foi deduzido do `app.js`).
+
+## Decisões
+
+- 2026-10-05 — `CLAUDE.md` guarda regras e visão geral (estável); `PROGRESSO.md` guarda o
+  estado do trabalho (muda a cada sessão) e é importado pelo `CLAUDE.md`.
+
+## Esquema do banco (Supabase)
+
+Deduzido das chamadas em `app.js`; tipos e RLS **não confirmados** no painel.
+
+| Tabela     | Colunas usadas pelo app                                                        | Observações |
+|------------|---------------------------------------------------------------------------------|-------------|
+| `assuntos` | `id`, `nome`, `descricao` (HTML), `data` (prazo, pode ser nulo), `status`, `zona`, `user_id`, `created_at` | `status`: `ativo`, `andamento`, `analise`, `concluido`. `zona`: `transmissao`, `geracao`, `ma`, `outros`. |
+| `notas`    | `id`, `titulo`, `conteudo` (HTML), `user_id`, `created_at`, `updated_at`        | `created_at`/`updated_at` enviados pelo app. |
+| `pastas`   | `id`, `nome`, `user_id`, `created_at`                                           | Ao excluir uma pasta, o app apaga antes os `links` dela. |
+| `links`    | `id`, `nome`, `url`, `descricao`, `tipo`, `pasta_id`, `user_id`, `created_at`   | `tipo`: `drive`, `pdf`, `sheet`, `ppt`, `link`. |
+
+RLS esperada: cada tabela restrita a `user_id = auth.uid()` em select/insert/update/delete.
+
+### APIs externas
+
+- Dólar: `economia.awesomeapi.com.br` (sem chave).
+- Metais: `metals-api.com` com `METALS_API_KEY` (vazia = modo demonstração).
