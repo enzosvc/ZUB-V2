@@ -87,37 +87,35 @@ async function handleLogout() { await db.auth.signOut(); }
 async function loadCotacoes() {
   const now = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
   document.getElementById('cotacao-time').textContent = `Atualizado às ${now}`;
-  await loadDolar();
-  if (METALS_API_KEY) await loadMetals(); else setDemoMetals();
+  await Promise.all([loadMoedas(), loadIbovespa()]);
 }
 
-async function loadDolar() {
+const fmtNum = (v, dec) => v.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+
+async function loadMoedas() {
   try {
-    const res  = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL');
+    const res  = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL');
     const data = await res.json();
-    const usd  = data.USDBRL;
-    const val  = parseFloat(usd.bid).toFixed(2);
-    const pct  = parseFloat(usd.pctChange).toFixed(2);
-    setCotacao('cot-dolar', `R$ ${val}`, pct, parseFloat(pct) >= 0);
-  } catch { setCotacao('cot-dolar', 'Indisponível', null, null); }
+    [['cot-dolar', data.USDBRL], ['cot-euro', data.EURBRL]].forEach(([id, m]) => {
+      if (!m) { setCotacao(id, 'Indisponível', null, null); return; }
+      const pct = parseFloat(m.pctChange).toFixed(2);
+      setCotacao(id, `R$ ${fmtNum(parseFloat(m.bid), 2)}`, pct, parseFloat(pct) >= 0);
+    });
+  } catch {
+    setCotacao('cot-dolar', 'Indisponível', null, null);
+    setCotacao('cot-euro',  'Indisponível', null, null);
+  }
 }
 
-async function loadMetals() {
+async function loadIbovespa() {
+  if (!BRAPI_TOKEN) { setCotacao('cot-ibov', 'Indisponível', null, null); return; }
   try {
-    const res  = await fetch(`https://metals-api.com/api/latest?access_key=${METALS_API_KEY}&base=USD&symbols=ALU,LITHIUM,STEEL_HRC`);
-    const data = await res.json();
-    if (data.success) {
-      setCotacao('cot-aluminio', `$${Math.round(1/data.rates.ALU*1000)}`, null, null);
-      setCotacao('cot-litio',    `$${Math.round(1/data.rates.LITHIUM*1000)}`, null, null);
-      setCotacao('cot-aco',      `$${Math.round(1/data.rates.STEEL_HRC)}`, null, null);
-    } else setDemoMetals();
-  } catch { setDemoMetals(); }
-}
-
-function setDemoMetals() {
-  setCotacao('cot-aluminio', '$2.487', '+0.82', true);
-  setCotacao('cot-litio',    '$11.200', '-1.14', false);
-  setCotacao('cot-aco',      '$548', '+0.20', true);
+    const res  = await fetch(`https://brapi.dev/api/quote/%5EBVSP?token=${encodeURIComponent(BRAPI_TOKEN)}`);
+    const q    = (await res.json()).results?.[0];
+    if (!q) throw new Error('sem dados');
+    const pct  = q.regularMarketChangePercent.toFixed(2);
+    setCotacao('cot-ibov', `${fmtNum(q.regularMarketPrice, 0)} pts`, pct, parseFloat(pct) >= 0);
+  } catch { setCotacao('cot-ibov', 'Indisponível', null, null); }
 }
 
 function setCotacao(id, val, pct, up) {
@@ -126,7 +124,7 @@ function setCotacao(id, val, pct, up) {
   card.querySelector('.cot-val').textContent = val;
   const el = card.querySelector('.cot-change');
   if (pct !== null) {
-    el.textContent  = `${parseFloat(pct) >= 0 ? '+' : ''}${pct}% hoje`;
+    el.textContent  = `${parseFloat(pct) >= 0 ? '+' : ''}${String(pct).replace('.', ',')}% hoje`;
     el.className    = 'cot-change ' + (up ? 'up' : 'down');
   } else {
     el.textContent = 'Sem variação';

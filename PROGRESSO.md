@@ -11,11 +11,14 @@ _Última atualização: 2026-10-05_
 
 ## Próximos passos
 
+- Conferir em produção se dólar, euro e Ibovespa batem com o mercado (só testados com dados simulados).
 - Conferir no painel do Supabase as políticas RLS das tabelas abaixo e registrar o SQL
   real na seção "Esquema do banco" (hoje o esquema foi deduzido do `app.js`).
 
 ## Decisões
 
+- 2026-10-05 — Cotações: dólar, euro e Ibovespa. Cards de metais (alumínio, lítio, aço) e a
+  Metals-API removidos (só mostravam valores de demonstração).
 - 2026-10-05 — Botão do BESS ZUB: ícone da bateria (`bess-zub.png`, copiado de
   `frontend/app/apple-icon.png` do repo `enzosvc/BESS---zub`) à esquerda do nome do usuário;
   abre em nova aba; URL em `config.js` (`BESS_ZUB_URL` = `https://bess-zub.vercel.app/dashboard`;
@@ -38,5 +41,5 @@ RLS esperada: cada tabela restrita a `user_id = auth.uid()` em select/insert/upd
 
 ### APIs externas
 
-- Dólar: `economia.awesomeapi.com.br` (sem chave).
-- Metais: `metals-api.com` com `METALS_API_KEY` (vazia = modo demonstração).
+- Dólar e euro: `economia.awesomeapi.com.br` (`USD-BRL,EUR-BRL`, sem chave).
+- Ibovespa: `brapi.dev` (`/api/quote/^BVSP`) com `BRAPI_TOKEN` em `config.js` (vazio = "Indisponível").
