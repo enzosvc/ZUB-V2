@@ -7,8 +7,7 @@ _Última atualização: 2026-10-05_
 
 ## Em andamento
 
-- Botão do BESS ZUB na barra superior (branch `claude/jolly-turing-ms3fze`): implementado,
-  mas fica oculto até preencher `BESS_ZUB_URL` em `config.js` com a URL do Vercel do BESS ZUB.
+- Nada em andamento.
 
 ## Próximos passos
 
@@ -19,7 +18,8 @@ _Última atualização: 2026-10-05_
 
 - 2026-10-05 — Botão do BESS ZUB: ícone da bateria (`bess-zub.png`, copiado de
   `frontend/app/apple-icon.png` do repo `enzosvc/BESS---zub`) à esquerda do nome do usuário;
-  abre em nova aba; URL em `config.js` (`BESS_ZUB_URL`).
+  abre em nova aba; URL em `config.js` (`BESS_ZUB_URL` = `https://bess-zub.vercel.app/dashboard`;
+  vazia = botão oculto).
 - 2026-10-05 — `CLAUDE.md` guarda regras e visão geral (estável); `PROGRESSO.md` guarda o
   estado do trabalho (muda a cada sessão) e é importado pelo `CLAUDE.md`.
 
