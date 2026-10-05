@@ -87,7 +87,11 @@ async function handleLogout() { await db.auth.signOut(); }
 async function loadCotacoes() {
   const now = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
   document.getElementById('cotacao-time').textContent = `Atualizado às ${now}`;
-  await Promise.all([loadMoedas(), loadIbovespa()]);
+  await Promise.all([
+    loadMoedas(),
+    loadBrapi('cot-ibov',   '^BVSP',  v => `${fmtNum(v, 0)} pts`),
+    loadBrapi('cot-alup11', 'ALUP11', v => `R$ ${fmtNum(v, 2)}`)
+  ]);
 }
 
 const fmtNum = (v, dec) => v.toLocaleString('pt-BR', { minimumFractionDigits: dec, maximumFractionDigits: dec });
@@ -107,15 +111,15 @@ async function loadMoedas() {
   }
 }
 
-async function loadIbovespa() {
-  if (!BRAPI_TOKEN) { setCotacao('cot-ibov', 'Indisponível', null, null); return; }
+async function loadBrapi(id, ticker, fmtVal) {
+  if (!BRAPI_TOKEN) { setCotacao(id, 'Indisponível', null, null); return; }
   try {
-    const res  = await fetch(`https://brapi.dev/api/quote/%5EBVSP?token=${encodeURIComponent(BRAPI_TOKEN)}`);
+    const res  = await fetch(`https://brapi.dev/api/quote/${encodeURIComponent(ticker)}?token=${encodeURIComponent(BRAPI_TOKEN)}`);
     const q    = (await res.json()).results?.[0];
     if (!q) throw new Error('sem dados');
     const pct  = q.regularMarketChangePercent.toFixed(2);
-    setCotacao('cot-ibov', `${fmtNum(q.regularMarketPrice, 0)} pts`, pct, parseFloat(pct) >= 0);
-  } catch { setCotacao('cot-ibov', 'Indisponível', null, null); }
+    setCotacao(id, fmtVal(q.regularMarketPrice), pct, parseFloat(pct) >= 0);
+  } catch { setCotacao(id, 'Indisponível', null, null); }
 }
 
 function setCotacao(id, val, pct, up) {

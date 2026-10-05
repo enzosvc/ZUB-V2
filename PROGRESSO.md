@@ -11,12 +11,13 @@ _Última atualização: 2026-10-05_
 
 ## Próximos passos
 
-- Conferir em produção se dólar, euro e Ibovespa batem com o mercado (só testados com dados simulados).
+- Conferir em produção se dólar, euro, Ibovespa e ALUP11 batem com o mercado (só testados com dados simulados).
 - Conferir no painel do Supabase as políticas RLS das tabelas abaixo e registrar o SQL
   real na seção "Esquema do banco" (hoje o esquema foi deduzido do `app.js`).
 
 ## Decisões
 
+- 2026-10-05 — Card da ALUP11 (Alupar) adicionado às cotações, via brapi.dev (grade de 4 colunas).
 - 2026-10-05 — Cotações: dólar, euro e Ibovespa. Cards de metais (alumínio, lítio, aço) e a
   Metals-API removidos (só mostravam valores de demonstração).
 - 2026-10-05 — Botão do BESS ZUB: ícone da bateria (`bess-zub.png`, copiado de
@@ -42,4 +43,4 @@ RLS esperada: cada tabela restrita a `user_id = auth.uid()` em select/insert/upd
 ### APIs externas
 
 - Dólar e euro: `economia.awesomeapi.com.br` (`USD-BRL,EUR-BRL`, sem chave).
-- Ibovespa: `brapi.dev` (`/api/quote/^BVSP`) com `BRAPI_TOKEN` em `config.js` (vazio = "Indisponível").
+- Ibovespa e ALUP11: `brapi.dev` (`/api/quote/^BVSP` e `/api/quote/ALUP11`, uma chamada cada) com `BRAPI_TOKEN` em `config.js` (vazio = "Indisponível").

@@ -10,12 +10,12 @@ Responda sempre em português, de forma direta e concisa.
 
 - Site estático em HTML/CSS/JS puro, sem build e sem framework: `index.html`, `style.css`, `app.js`, `config.js`.
 - Backend: Supabase (Auth + Postgres) acessado direto do navegador via `supabase-js`. Deploy no Vercel.
-- `config.js` guarda `SUPABASE_URL` e a chave **publishable** (`sb_publishable_...`), que é pública por design. **Nunca** colocar chave `sb_secret_...`/service-role nem outro segredo neste repo. O token da brapi.dev (`BRAPI_TOKEN`, Ibovespa) é gratuito e só de leitura; vazio = card "Indisponível".
+- `config.js` guarda `SUPABASE_URL` e a chave **publishable** (`sb_publishable_...`), que é pública por design. **Nunca** colocar chave `sb_secret_...`/service-role nem outro segredo neste repo. O token da brapi.dev (`BRAPI_TOKEN`, Ibovespa e ALUP11) é gratuito e só de leitura; vazio = card "Indisponível".
 - Como o acesso ao banco parte do navegador, a segurança depende das **políticas RLS** do Supabase. Qualquer tabela nova precisa de RLS por usuário; avise o Enzo e entregue o SQL.
 
 ## Funcionalidades (abas)
 
-- **Geral:** cotações ao vivo (dólar USD/BRL, euro EUR/BRL, Ibovespa) e links de notícias.
+- **Geral:** cotações ao vivo (dólar USD/BRL, euro EUR/BRL, Ibovespa, ALUP11) e links de notícias.
 - **Agenda / Assuntos:** assuntos por zona (Transmissão, Geração e Armazenamento, M&A, Outros), com status (ativo, em andamento, análise, concluído), prazos, visão em blocos ou lista e calendário anual.
 - **Desenvolvimento:** temas/notas com editor de texto rico (`contenteditable` + `execCommand`).
 - **Arquivos:** pastas com links (Drive, OneDrive etc.).
