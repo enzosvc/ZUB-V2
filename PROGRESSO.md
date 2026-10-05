@@ -16,6 +16,10 @@ _Última atualização: 2026-10-05_
 
 ## Decisões
 
+- 2026-10-05 — Botão do BESS ZUB: ícone da bateria (`bess-zub.png`, copiado de
+  `frontend/app/apple-icon.png` do repo `enzosvc/BESS---zub`) à esquerda do nome do usuário;
+  abre em nova aba; URL em `config.js` (`BESS_ZUB_URL` = `https://bess-zub.vercel.app/dashboard`;
+  vazia = botão oculto).
 - 2026-10-05 — `CLAUDE.md` guarda regras e visão geral (estável); `PROGRESSO.md` guarda o
   estado do trabalho (muda a cada sessão) e é importado pelo `CLAUDE.md`.
 

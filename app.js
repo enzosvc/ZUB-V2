@@ -44,6 +44,8 @@ function showApp() {
   document.getElementById('app').style.display = 'block';
   const email = currentUser?.email || '';
   document.getElementById('user-badge').textContent = email.split('@')[0];
+  const bessLink = document.getElementById('bess-link');
+  if (typeof BESS_ZUB_URL === 'string' && BESS_ZUB_URL) { bessLink.href = BESS_ZUB_URL; bessLink.style.display = 'flex'; }
   loadCotacoes();
   loadAssuntos();
   loadNotas();
