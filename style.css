@@ -60,7 +60,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 .update-time { font-size: 11px; color: var(--text3); font-weight: 500; }
 
 /* COTAÇÕES */
-.cotacoes-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 20px; }
+.cotacoes-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 20px; }
 .cot-card { background: var(--bg2); border-radius: var(--radius); padding: 14px 16px; border-top: 3px solid var(--lime); box-shadow: 0 1px 4px rgba(13,27,62,0.07); }
 .cot-label { font-size: 10px; color: var(--text2); margin-bottom: 6px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; }
 .cot-val { font-size: 20px; font-weight: 800; color: var(--navy); line-height: 1; }
@@ -256,7 +256,7 @@ body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(
 .btn-save:hover { opacity: 0.85; }
 
 @media (max-width: 900px) {
-  .cotacoes-grid { grid-template-columns: 1fr 1fr; }
+  .cotacoes-grid { grid-template-columns: 1fr; }
   .geral-main-row { grid-template-columns: 1fr; }
   .zonas-grid { grid-template-columns: 1fr; }
   .months-row { grid-template-columns: repeat(6,1fr); }
