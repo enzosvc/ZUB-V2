@@ -30,3 +30,8 @@ Responda sempre em português, de forma direta e concisa.
 5. Interface em português do Brasil; manter o estilo visual atual (`style.css`) ao adicionar elementos.
 6. Antes de commitar, abra o `index.html` localmente (ex.: `python3 -m http.server`) e confira que o login, as abas e o console do navegador não têm erros.
 7. Antes de dar push, rode `git fetch origin` e confirme que a branch local está em dia.
+8. Continuidade: o estado do trabalho fica em `PROGRESSO.md` (importado abaixo). Ao terminar uma sessão ou antes de uma pausa, atualize-o (em andamento, próximos passos, decisões, esquema do banco) no mesmo commit do trabalho.
+
+## Estado atual
+
+@PROGRESSO.md
