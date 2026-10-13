@@ -90,7 +90,8 @@ async function loadCotacoes() {
   await Promise.all([
     loadMoedas(),
     loadBrapi('cot-ibov',   '^BVSP',  v => `${fmtNum(v, 0)} pts`),
-    loadBrapi('cot-alup11', 'ALUP11', v => `R$ ${fmtNum(v, 2)}`)
+    loadBrapi('cot-alup11', 'ALUP11', v => `R$ ${fmtNum(v, 2)}`),
+    loadBrapi('cot-vale3',  'VALE3',  v => `R$ ${fmtNum(v, 2)}`)
   ]);
 }
 
