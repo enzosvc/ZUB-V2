@@ -3,7 +3,7 @@
 Arquivo de continuidade entre sessões. Ler no início de cada sessão; atualizar no fim
 de cada sessão (ou antes de uma pausa), no mesmo commit do trabalho.
 
-_Última atualização: 2026-10-05_
+_Última atualização: 2026-10-13_
 
 ## Em andamento
 
@@ -11,12 +11,13 @@ _Última atualização: 2026-10-05_
 
 ## Próximos passos
 
-- Conferir em produção se dólar, euro, Ibovespa e ALUP11 batem com o mercado (só testados com dados simulados).
+- Conferir em produção se dólar, euro, Ibovespa, ALUP11 e VALE3 batem com o mercado (só testados com dados simulados).
 - Conferir no painel do Supabase as políticas RLS das tabelas abaixo e registrar o SQL
   real na seção "Esquema do banco" (hoje o esquema foi deduzido do `app.js`).
 
 ## Decisões
 
+- 2026-10-13 — Card da VALE3 (Vale) ao lado da ALUP11, via brapi.dev (grade de 5 colunas; 2 no celular).
 - 2026-10-05 — Card da ALUP11 (Alupar) adicionado às cotações, via brapi.dev (grade de 4 colunas).
 - 2026-10-05 — Cotações: dólar, euro e Ibovespa. Cards de metais (alumínio, lítio, aço) e a
   Metals-API removidos (só mostravam valores de demonstração).
@@ -43,4 +44,4 @@ RLS esperada: cada tabela restrita a `user_id = auth.uid()` em select/insert/upd
 ### APIs externas
 
 - Dólar e euro: `economia.awesomeapi.com.br` (`USD-BRL,EUR-BRL`, sem chave).
-- Ibovespa e ALUP11: `brapi.dev` (`/api/quote/^BVSP` e `/api/quote/ALUP11`, uma chamada cada) com `BRAPI_TOKEN` em `config.js` (vazio = "Indisponível").
+- Ibovespa, ALUP11 e VALE3: `brapi.dev` (`/api/quote/<ticker>`, uma chamada por ticker) com `BRAPI_TOKEN` em `config.js` (vazio = "Indisponível").
