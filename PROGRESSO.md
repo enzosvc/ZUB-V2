@@ -3,7 +3,7 @@
 Arquivo de continuidade entre sessões. Ler no início de cada sessão; atualizar no fim
 de cada sessão (ou antes de uma pausa), no mesmo commit do trabalho.
 
-_Última atualização: 2026-10-13_
+_Última atualização: 2026-10-23_
 
 ## Em andamento
 
@@ -17,6 +17,8 @@ _Última atualização: 2026-10-13_
 
 ## Decisões
 
+- 2026-10-23 — Atalho do TradingView (`https://br.tradingview.com/`) na barra superior, à esquerda do
+  botão do BESS ZUB; ícone genérico de gráfico em SVG inline (sem logo da marca); abre em nova aba.
 - 2026-10-13 — Card da VALE3 (Vale) ao lado da ALUP11, via brapi.dev (grade de 5 colunas; 2 no celular).
 - 2026-10-05 — Card da ALUP11 (Alupar) adicionado às cotações, via brapi.dev (grade de 4 colunas).
 - 2026-10-05 — Cotações: dólar, euro e Ibovespa. Cards de metais (alumínio, lítio, aço) e a

@@ -19,6 +19,7 @@ Responda sempre em português, de forma direta e concisa.
 - **Agenda / Assuntos:** assuntos por zona (Transmissão, Geração e Armazenamento, M&A, Outros), com status (ativo, em andamento, análise, concluído), prazos, visão em blocos ou lista e calendário anual.
 - **Desenvolvimento:** temas/notas com editor de texto rico (`contenteditable` + `execCommand`).
 - **Arquivos:** pastas com links (Drive, OneDrive etc.).
+- **Barra superior:** atalhos para o TradingView e o BESS ZUB (nova aba), nome do usuário e Sair.
 - Login por e-mail e senha (Supabase Auth); a tela do app só aparece após a sessão.
 
 ## Regras de trabalho
